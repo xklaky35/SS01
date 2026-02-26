@@ -1,16 +1,50 @@
 #include "Player.h"
-
-#include <cstdlib>
 #include <iostream>
-#include <random>
 
+int get_random_number(int,int);
 
-Player::Player(int id, PLAYER_TYPE type, int dice_count) {
+Player::Player() {
     follower = nullptr;
-    Player::dice_count = dice_count;
-    Player::type = type;
-    dice_results = (int*)malloc(sizeof(int)*dice_count);
-    Player::id = id;
+    dice_count = 2;
+    type = UNDEFINED;
+    dice_results = new int[dice_count];
+    id = -1;
+}
+
+Player::Player(const int p_id, const PLAYER_TYPE p_type, const int p_dice_count) {
+    follower = nullptr;
+    dice_count = p_dice_count;
+    type = p_type;
+    dice_results = new int[dice_count];
+    id = p_id;
+}
+
+Player::~Player() {
+    follower = nullptr;
+    delete[] dice_results;
+}
+
+void Player::make_turn() const {
+    // let player roll manually if the player is human
+    if (type == HUMAN) {
+        std::cout << "Player (id:" << id << ")! Roll your dice >" << std::endl;
+        getchar();
+    }
+    else if (type == AI) {
+        std::cout << "\nAI (id:" << id << ") is rolling..." << std::endl;
+    }
+
+    roll_dice();
+
+    // hide result of AI to control winner
+    if (type == HUMAN) {
+        print_results();
+    }
+
+    // pass to next player
+    if (follower != nullptr) {
+        follower->make_turn();
+    }
 }
 
 // display the current dice result on the screen
@@ -22,33 +56,10 @@ void Player::print_results() const {
 
 // generate random numbers for each dice
 void Player::roll_dice() const {
-
-    // setup random number generator with device and distribution
-    std::random_device random_device;
-    std::mt19937 gen(random_device());
-    std::uniform_int_distribution<> distribution(1, 6);
-
-    // let player roll manually if the player is human
-    if (type == HUMAN) {
-        std::cout << "\nPlayer (id:" << id << ") is rolling...";
-        getchar();
-    }
-    else if (type == AI) {
-        std::cout << "\nAI (id:" << id << ") is rolling..." << std::endl;
-    }
-
     // generate random numbers
     for (int i = 0; i < dice_count; i++) {
-        dice_results[i] = distribution(gen);
+        dice_results[i] = get_random_number(1,6);
     }
-
-    print_results();
-
-    // pass to next player
-    if (follower != nullptr) {
-        follower->roll_dice();
-    }
-
 }
 
 // returns true if all dice are the same, false otherwise

@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(SS01 main.cpp
         UsingReferences/DiceRoller.cpp
         UsingReferences/DiceRoller.h
-        SimpleDiceGame/List.h
         SimpleDiceGame/Player.cpp
         SimpleDiceGame/Player.h
         SimpleDiceGame/PlayerQueue.cpp

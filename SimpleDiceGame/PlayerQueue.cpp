@@ -1,6 +1,14 @@
 #include "PlayerQueue.h"
 
+#include <iostream>
+
 PlayerQueue::PlayerQueue() {
+    size = 0;
+    firstPlayer = nullptr;
+    lastPlayer = nullptr;
+}
+
+PlayerQueue::~PlayerQueue() {
     size = 0;
     firstPlayer = nullptr;
     lastPlayer = nullptr;
@@ -41,6 +49,17 @@ Player *PlayerQueue::dequeue() {
 // size getter
 int PlayerQueue::get_size() const {
     return size;
+}
+
+Player * PlayerQueue::find_first_player_of_type(Player::PLAYER_TYPE) const {
+    Player* current = firstPlayer;
+    while (current != nullptr) {
+        if (current->type == Player::AI) {
+            return current;
+        }
+        current = current->follower;
+    }
+    return nullptr;
 }
 
 // returns true if the queue is empty, false otherwise
