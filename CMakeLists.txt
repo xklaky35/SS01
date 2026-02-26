@@ -13,4 +13,6 @@ add_executable(SS01 main.cpp
         SimpleDiceGame/SimpleDiceGame.cpp
         SimpleDiceGame/SimpleDiceGame.h
         HiddenTreasure/HiddenTreasure.cpp
-        HiddenTreasure/HiddenTreasure.h)
+        HiddenTreasure/HiddenTreasure.h
+        AiBotLetterGuess/AiBotLetterGuess.cpp
+        AiBotLetterGuess/AiBotLetterGuess.h)

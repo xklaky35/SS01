@@ -4,14 +4,17 @@
 #include "SimpleDiceGame/SimpleDiceGame.h"
 #include "UsingReferences/DiceRoller.h"
 #include "HiddenTreasure/HiddenTreasure.h"
+#include "AiBotLetterGuess/AiBotLetterGuess.h"
+
 
 void rollDice();
 void playSimpleDiceGame();
 void playHiddenTreasure();
+void playAiBotLetterGuess();
 
 int main()
 {
-    playHiddenTreasure();
+    playAiBotLetterGuess();
     return 0;
 }
 void rollDice() {
@@ -22,21 +25,24 @@ void rollDice() {
 }
 
 void playSimpleDiceGame() {
-    auto* simple_dice_game = new SimpleDiceGame();
-
-    simple_dice_game->play();
-
-    delete simple_dice_game;
+    auto simple_dice_game = SimpleDiceGame();
+    simple_dice_game.play();
 }
 
 void playHiddenTreasure() {
-    auto* hidden_treasure_game = new HiddenTreasure();
-
-    hidden_treasure_game->Play();
-
-    delete hidden_treasure_game;
+    auto hidden_treasure_game = HiddenTreasure();
+    hidden_treasure_game.Play();
 }
 
+void playAiBotLetterGuess() {
+    auto aiBotLetterGuess = AiBotLetterGuess();
+    aiBotLetterGuess.Play();
+}
+
+
+//####################
+//#       MISC       #
+//####################
 int get_random_number(const int min, const int max) {
 
     // setup random number generator with device and distribution
@@ -46,4 +52,25 @@ int get_random_number(const int min, const int max) {
 
     // generate random numbers
     return distribution(gen);
+}
+
+bool isInAlphabet(char input) {
+    if ((input >= 65 && input <= 90) || (input >= 97 && input <= 122)) {
+        return true;
+    }
+    return false;
+}
+
+bool isNumber(char input) {
+    if (input >= 48 && input <= 57) {
+        return true;
+    }
+    return false;
+}
+
+bool isSpecialCharacter(char input) {
+    if (!isInAlphabet(input) && !isNumber(input)) {
+        return true;
+    }
+    return false;
 }
