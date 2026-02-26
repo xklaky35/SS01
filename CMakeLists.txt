@@ -15,4 +15,6 @@ add_executable(SS01 main.cpp
         HiddenTreasure/HiddenTreasure.cpp
         HiddenTreasure/HiddenTreasure.h
         AiBotLetterGuess/AiBotLetterGuess.cpp
-        AiBotLetterGuess/AiBotLetterGuess.h)
+        AiBotLetterGuess/AiBotLetterGuess.h
+        MontyHall/MontyHall.cpp
+        MontyHall/MontyHall.h)

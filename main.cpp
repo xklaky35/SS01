@@ -5,16 +5,17 @@
 #include "UsingReferences/DiceRoller.h"
 #include "HiddenTreasure/HiddenTreasure.h"
 #include "AiBotLetterGuess/AiBotLetterGuess.h"
-
+#include "MontyHall/MontyHall.h"
 
 void rollDice();
 void playSimpleDiceGame();
 void playHiddenTreasure();
 void playAiBotLetterGuess();
+void playMontyHall();
 
 int main()
 {
-    playAiBotLetterGuess();
+    playMontyHall();
     return 0;
 }
 void rollDice() {
@@ -37,6 +38,11 @@ void playHiddenTreasure() {
 void playAiBotLetterGuess() {
     auto aiBotLetterGuess = AiBotLetterGuess();
     aiBotLetterGuess.Play();
+}
+
+void playMontyHall() {
+    auto montyHall = MontyHall();
+    montyHall.Play();
 }
 
 
