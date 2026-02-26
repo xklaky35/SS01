@@ -11,4 +11,6 @@ add_executable(SS01 main.cpp
         SimpleDiceGame/PlayerQueue.cpp
         SimpleDiceGame/PlayerQueue.h
         SimpleDiceGame/SimpleDiceGame.cpp
-        SimpleDiceGame/SimpleDiceGame.h)
+        SimpleDiceGame/SimpleDiceGame.h
+        HiddenTreasure/HiddenTreasure.cpp
+        HiddenTreasure/HiddenTreasure.h)

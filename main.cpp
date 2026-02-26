@@ -3,13 +3,15 @@
 
 #include "SimpleDiceGame/SimpleDiceGame.h"
 #include "UsingReferences/DiceRoller.h"
+#include "HiddenTreasure/HiddenTreasure.h"
 
 void rollDice();
 void playSimpleDiceGame();
+void playHiddenTreasure();
 
 int main()
 {
-    playSimpleDiceGame();
+    playHiddenTreasure();
     return 0;
 }
 void rollDice() {
@@ -25,6 +27,14 @@ void playSimpleDiceGame() {
     simple_dice_game->play();
 
     delete simple_dice_game;
+}
+
+void playHiddenTreasure() {
+    auto* hidden_treasure_game = new HiddenTreasure();
+
+    hidden_treasure_game->Play();
+
+    delete hidden_treasure_game;
 }
 
 int get_random_number(const int min, const int max) {
