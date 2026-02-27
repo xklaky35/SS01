@@ -17,4 +17,6 @@ add_executable(SS01 main.cpp
         AiBotLetterGuess/AiBotLetterGuess.cpp
         AiBotLetterGuess/AiBotLetterGuess.h
         MontyHall/MontyHall.cpp
-        MontyHall/MontyHall.h)
+        MontyHall/MontyHall.h
+        CppAndHGenerator/CppAndHGenerator.cpp
+        CppAndHGenerator/CppAndHGenerator.h)
