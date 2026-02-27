@@ -1,5 +1,4 @@
 #include <iostream>
-#include <random>
 
 #include "SimpleDiceGame/SimpleDiceGame.h"
 #include "UsingReferences/DiceRoller.h"
@@ -8,85 +7,124 @@
 #include "MontyHall/MontyHall.h"
 #include "CppAndHGenerator/CppAndHGenerator.h"
 
-void rollDice();
-void playSimpleDiceGame();
-void playHiddenTreasure();
-void playAiBotLetterGuess();
-void playMontyHall();
-void generateFiles();
+void PrintWelcome();
+void PrintMenu();
+void RollDice();
+void PlaySimpleDiceGame();
+void PlayHiddenTreasure();
+void PlayAiBotLetterGuess();
+void PlayMontyHall();
+void GenerateFiles();
+bool ValidateInput(const std::string&, bool&);
 
 int main()
 {
-    generateFiles();
+    PrintWelcome();
+    bool isRunning = true;
+
+    // main gameloop
+    while (isRunning) {
+        PrintMenu();
+
+        std::string userChoice;
+        do {
+            std::cout << "Select an option: ";
+            std::cin >> userChoice;
+        }
+        while (!ValidateInput(userChoice, isRunning));
+    }
     return 0;
 }
-void rollDice() {
+
+void PrintWelcome() {
+    std::cout << "****************************************\n";
+    std::cout << "*                                      *\n";
+    std::cout << "*        >>>  WELCOME PLAYER  <<<      *\n";
+    std::cout << "*                                      *\n";
+    std::cout << "*        COMP710 GAME PROJECT          *\n";
+    std::cout << "*                                      *\n";
+    std::cout << "****************************************\n";
+    std::cout << "\nPress ENTER to start...";
+    std::cin.get();
+}
+
+void PrintMenu() {
+    std::cout << "\n=====================================" << std::endl;
+    std::cout << "           GAME SELECTION            " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    puts("");
+    std::cout << "1. Roll Dice" << std::endl;
+    std::cout << "2. Simple Dice Game" << std::endl;
+    std::cout << "3. Hidden Treasure" << std::endl;
+    std::cout << "4. AI Bot Letter Guess" << std::endl;
+    std::cout << "5. Monty Hall" << std::endl;
+    std::cout << "6. Generate Files" << std::endl;
+    puts("");
+    std::cout << "Exit with ':q'" << std::endl;
+    std::cout << "=====================================" << std::endl;
+}
+
+bool ValidateInput(const std::string& input, bool& isRunning) {
+    if (input == "1") {
+        RollDice();
+        return true;
+    }
+    else if (input == "2") {
+
+        PlaySimpleDiceGame();
+        return true;
+    }
+    else if (input == "3") {
+
+        PlayAiBotLetterGuess();
+        return true;
+    }
+    else if (input == "4") {
+        PlayHiddenTreasure();
+        return true;
+
+    }
+    else if (input == "5") {
+
+        PlayMontyHall();
+        return true;
+    }
+    else if (input == "6") {
+
+        GenerateFiles();
+        return true;
+    }
+    else if (input == ":q") {
+        isRunning = false;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void RollDice() {
     // Task 1 test
     DiceRoller game;
     game.roll("normal");
     game.roll("cpp11");
 }
-
-void playSimpleDiceGame() {
-    auto simple_dice_game = SimpleDiceGame();
-    simple_dice_game.play();
+void PlaySimpleDiceGame() {
+    auto simpleDiceGame = SimpleDiceGame();
+    simpleDiceGame.play();
 }
-
-void playHiddenTreasure() {
-    auto hidden_treasure_game = HiddenTreasure();
-    hidden_treasure_game.Play();
+void PlayHiddenTreasure() {
+    auto hiddenTreasureGame = HiddenTreasure();
+    hiddenTreasureGame.Play();
 }
-
-void playAiBotLetterGuess() {
+void PlayAiBotLetterGuess() {
     auto aiBotLetterGuess = AiBotLetterGuess();
     aiBotLetterGuess.Play();
 }
-
-void playMontyHall() {
+void PlayMontyHall() {
     auto montyHall = MontyHall();
     montyHall.Play();
 }
-
-void generateFiles() {
-    auto cppAndHGenerator = CppAndHGenerator();
+void GenerateFiles() {
     CppAndHGenerator::StartGenerator();
-}
-
-
-//####################
-//#       MISC       #
-//####################
-int get_random_number(const int min, const int max) {
-
-    // setup random number generator with device and distribution
-    std::random_device random_device;
-    std::mt19937 gen(random_device());
-    std::uniform_int_distribution<> distribution(min, max);
-
-    // generate random numbers
-    return distribution(gen);
-}
-
-// returns true if the provided char is a letter, false otherwise
-bool isInAlphabet(char input) {
-    if ((input >= 65 && input <= 90) || (input >= 97 && input <= 122)) {
-        return true;
-    }
-    return false;
-}
-
-// returns true if the provided char is a number, false otherwise
-bool isNumber(char input) {
-    if (input >= 48 && input <= 57) {
-        return true;
-    }
-    return false;
-}
-
-// returns true if the provided char is a special charater, false otherwise
-bool isSpecialCharacter(char input) {
-    if (!isInAlphabet(input) && !isNumber(input)) {
-        return true;
-    }
-    return false;
 }

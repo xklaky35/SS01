@@ -19,4 +19,5 @@ add_executable(SS01 main.cpp
         MontyHall/MontyHall.cpp
         MontyHall/MontyHall.h
         CppAndHGenerator/CppAndHGenerator.cpp
-        CppAndHGenerator/CppAndHGenerator.h)
+        CppAndHGenerator/CppAndHGenerator.h
+        misc.cpp)

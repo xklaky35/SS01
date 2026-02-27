@@ -23,7 +23,7 @@ void CppAndHGenerator::StartGenerator() {
 	std::string cppTemplate = GetCppTemplate();
 
 	BuildContent(classname, cppTemplate, hTemplate);
-	GenerateFiles(classname);
+	GenerateFiles(classname, cppTemplate, hTemplate);
 }
 
 // validates the filename
